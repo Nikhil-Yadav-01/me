@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nikhil Yadav — Android Developer</title>
+    <meta name="description"
+        content="Nikhil Yadav — Android developer (Kotlin, Jetpack Compose, Firebase). Portfolio showcasing projects & internships." />
+
+    <!-- Google Fonts (CDN — works on GH Pages) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- AOS (optional scroll animations via CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Local styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="profile.png" />
+</head>
+
+<body>
+    <div id="app" class="site">
+
+        <!-- NAV -->
+        <nav class="nav container">
+            <a class="brand" href="#hero">Nikhil Yadav</a>
+
+            <div class="nav-right">
+                <button id="toggleTheme" class="btn-ghost" aria-label="Toggle theme"><i
+                        class="fa-regular fa-moon"></i></button>
+                <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+                <button id="hamburger" class="hamburger" aria-label="Open menu"><i
+                        class="fa-solid fa-bars"></i></button>
+            </div>
+
+            <!-- Mobile menu (hidden on desktop) -->
+            <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <header id="hero" class="hero container">
+            <div class="hero-grid">
+                <div class="hero-left" data-aos="fade-right">
+                    <h1>Hi — I'm <span class="accent">Nikhil Yadav</span></h1>
+                    <p class="lead">Passionate mobile app developer skilled in Kotlin, Jetpack Compose & Firebase. I
+                        build accessible, maintainable Android apps focused on UX and performance.</p>
+
+                    <div class="cta">
+                        <a href="#projects" class="btn">See Projects</a>
+                        <a href="mailto:nikhildevr.01@gmail.com" class="btn-outline"><i
+                                class="fa-solid fa-envelope"></i> Email</a>
+                    </div>
+
+                    <ul class="meta">
+                        <li><strong>Role:</strong> Android Developer (Fresher)</li>
+                        <li><strong>Location:</strong> Agra, India</li>
+                        <li><strong>Education:</strong> B.Tech — Computer Science (2022-2026)</li>
+                    </ul>
+                </div>
+
+                <aside class="hero-right" data-aos="fade-left">
+                    <div class="card profile-card">
+                        <img src="profile.png" alt="Nikhil Yadav — profile" class="avatar" />
+                        <div class="card-body">
+                            <h3>Nikhil Yadav</h3>
+                            <p class="muted">Android • Kotlin • Jetpack Compose</p>
+                            <div class="socials">
+                                <a href="https://github.com/Nikhil-Yadav-01" target="_blank" rel="noopener"
+                                    aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://linkedin.com/in/nikhil-yadav-r01" target="_blank" rel="noopener"
+                                    aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="mailto:nikhildevr.01@gmail.com" aria-label="Email"><i
+                                        class="fa-solid fa-envelope"></i></a>
+                                <a href="tel:+919455366424" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </header>
+
+        <!-- ABOUT -->
+        <section id="about" class="section container" data-aos="fade-up">
+            <h2>About</h2>
+            <p>I'm a passionate mobile app developer focused on building practical Android applications using Kotlin,
+                Jetpack Compose and Firebase. Through internships and personal projects I've implemented MVVM,
+                offline-first data handling (Room + Firebase), and clean UI components.</p>
+
+            <div class="skills-grid" aria-hidden="false">
+                <div class="skill">
+                    <h4>Languages</h4>
+                    <p>Kotlin · Java · C++</p>
+                </div>
+                <div class="skill">
+                    <h4>Android</h4>
+                    <p>Jetpack Compose · Android SDK · Navigation Components · Material Design</p>
+                </div>
+                <div class="skill">
+                    <h4>Architecture</h4>
+                    <p>MVVM · LiveData · ViewModel · Coroutines & Flow</p>
+                </div>
+                <div class="skill">
+                    <h4>APIs & DBs</h4>
+                    <p>Firebase (Auth, Firestore, Realtime) · Room · Retrofit · SQLite</p>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section container" data-aos="fade-up">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+
+                <!-- Secret Chat -->
+                <article class="project-card" data-aos="zoom-in">
+                    <div class="project-top">
+                        <h3>Secret Chat</h3>
+                        <p class="muted">Encrypted Messaging App</p>
+                    </div>
+                    <p>WhatsApp-like messaging app with end-to-end encryption using Ktor WebSockets. Offline-first
+                        storage using Room with sync to Firebase when online.</p>
+                    <p class="tech"><strong>Tech:</strong> Kotlin · Compose · Ktor · Firebase · Room · Coroutines</p>
+                    <div class="project-actions">
+                        <button class="btn-sm" data-project="secret-chat">Details</button>
+                        <a href="https://github.com/Nikhil-Dev-R" target="_blank" rel="noopener"
+                            class="btn-sm-outline">Code</a>
+                    </div>
+                </article>
+
+                <!-- School ERP -->
+                <article class="project-card" data-aos="zoom-in" data-aos-delay="80">
+                    <div class="project-top">
+                        <h3>School ERP (Prototype)</h3>
+                        <p class="muted">Admin · Teacher · Student</p>
+                    </div>
+                    <p>Prototype ERP app with multi-role features: Academics, Attendance, Exams, Inventory. Built with
+                        Jetpack Compose and Firebase for rapid prototyping.</p>
+                    <p class="tech"><strong>Tech:</strong> Kotlin · Compose · Firebase · Room</p>
+                    <div class="project-actions">
+                        <button class="btn-sm" data-project="school-erp">Details</button>
+                        <a href="https://github.com/Nikhil-Dev-R" target="_blank" rel="noopener"
+                            class="btn-sm-outline">Code</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section container" data-aos="fade-up">
+            <h2>Experience</h2>
+            <div class="exp-grid">
+                <div class="exp">
+                    <h4>Costoso Italiano — Android Developer Intern</h4>
+                    <p class="muted">Jun 2025 • Agra</p>
+                    <ul>
+                        <li>Assisted in integrating Firebase Cloud Messaging and worked on UI fixes.</li>
+                        <li>Gained hands-on experience with Agile workflows and Git.</li>
+                    </ul>
+                </div>
+
+                <div class="exp">
+                    <h4>Softpro India — Android Developer Intern</h4>
+                    <p class="muted">Sep 2024 — Nov 2024</p>
+                    <ul>
+                        <li>Built practice apps to learn layouts, navigation & lifecycle.</li>
+                        <li>Strengthened fundamentals in Java, XML and Android SDK.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+<section id="achievements" class="section">
+    <div class="container">
+        <h2>Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Top 25 in QUBITX Hackathon</h3>
+                <p>Ranked among top 25 of 400+ teams for Android App Innovation.</p>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-code"></i>
+                <h3>300+ DSA Problems Solved</h3>
+                <p>LeetCode, GeeksforGeeks, and HackerRank combined.</p>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Built 5+ Android Apps</h3>
+                <p>Including ERP System, Encrypted Chat App, and more.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="certifications" class="section">
+    <div class="container">
+        <h2>Certifications</h2>
+        <div class="certifications-grid">
+            <div class="cert-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Android Development Bootcamp</h3>
+                <p>Udemy — Kotlin, Firebase, MVVM</p>
+            </div>
+            <div class="cert-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Mastering Android with Jetpack Compose</h3>
+                <p>Udemy — Compose UI, Room, Firebase</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <div class="section-divider"></div>
+
+        <!-- CONTACT -->
+        <section id="contact" data-aos="fade-up">
+            <div class="container">
+                <h2>Contact</h2>
+                <p>Interested in working together or offering an internship? Reach out — I reply quickly.</p>
+                <div class="contact-section">
+                    <div class="contact-card">
+                        <i class="fa-solid fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:nikhildevr.01@gmail.com">nikhildevr.01@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-phone"></i>
+                        <h3>Phone</h3>
+                        <a href="tel:+919455366424">+91 9455366424</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-user"></i>
+                        <h3>Profiles</h3>
+                        <a href="https://github.com/Nikhil-Yadav-01" target="_blank">GitHub</a> ·
+                        <a href="https://linkedin.com/in/nikhil-yadav-r01" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                    <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/Nikhil-Yadav-01" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/nikhil-yadav-r01" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="mailto:nikhildevr.01@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+                <p>© <span id="year"></span> Nikhil Yadav — All Rights Reserved</p>
+            </div>
+        </footer>
+
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="projectModal" aria-hidden="true">
+        <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" aria-label="Close modal"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <h3 id="modalTitle">Project</h3>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- JS libs (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Local script -->
+    <script src="script.js"></script>
+    <script> AOS.init({ once: true, duration: 600 }); </script>
+</body>
+
+</html>
