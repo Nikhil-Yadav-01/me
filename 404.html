@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting...</title>
+    <script>
+      (function() {
+        var path = location.pathname + location.search + location.hash;
+        location.href = "./" + (path === "./" ? "" : path);
+      })();
+    </script>
   </head>
   <body>
-    <p>Return to <a href="/">homepage</a>.</p>
+    <p>Redirecting... <a href="/me/">Click here</a></p>
   </body>
 </html>
