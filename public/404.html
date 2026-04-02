@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loading...</title>
+    <script>
+      var url = location.pathname;
+      window.location.replace("/me/index.html" + (url === "/me/" ? "" : url.replace("/me", "")));
+    </script>
+  </head>
+  <body>
+    <p>Loading...</p>
+  </body>
+</html>

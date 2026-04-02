@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -9,7 +9,7 @@ import ContactForm from './components/ContactForm';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="min-h-screen flex flex-col bg-background-dark text-slate-100 font-display selection:bg-primary/30 antialiased overflow-hidden">
         <Navbar />
         <div className="flex-1 w-full flex flex-col relative">
@@ -23,7 +23,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
