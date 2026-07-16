@@ -6,4 +6,10 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "./",
+  resolve: {
+    alias: {
+      'stats.js': 'stats.js/src/Stats.js'
+    }
+  }
 })
+

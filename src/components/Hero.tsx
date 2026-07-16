@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, Stars, RoundedBox, Environment, DragControls } from '@react-three/drei';
+import { motion } from 'framer-motion';
 
 function CubeCluster() {
     const cubes = useMemo(() => {
@@ -76,6 +76,19 @@ const typewriterTexts = [
     'Full-Stack Engineer'
 ];
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 200, damping: 20 } }
+};
+
 function TypewriterContent({ onComplete }: { onComplete: () => void }) {
     const [displayedTexts, setDisplayedTexts] = useState<string[]>(['', '']);
     const [currentLine, setCurrentLine] = useState(0);
@@ -111,10 +124,20 @@ function TypewriterContent({ onComplete }: { onComplete: () => void }) {
         return () => clearTimeout(timer);
     }, [currentLine, currentChar, onComplete]);
 
+    const scrollToSection = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
-        <main className="relative z-10 px-6 lg:px-24 w-full max-w-[1600px] mx-auto lg:pointer-events-none">
+        <motion.main
+            className="relative z-10 px-6 lg:px-24 w-full max-w-[1600px] mx-auto lg:pointer-events-none"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isComplete ? "visible" : "hidden"}
+        >
             <div className="text-left space-y-8 w-full lg:w-1/2 max-w-xl lg:pointer-events-auto select-none">
-                <div className="space-y-4">
+                <motion.div variants={itemVariants} className="space-y-4">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
                         {displayedTexts[0]}
                         {isTyping && currentLine === 0 && (
@@ -128,23 +151,29 @@ function TypewriterContent({ onComplete }: { onComplete: () => void }) {
                             )}
                         </span>
                     </h1>
-                    <p className={`text-slate-400 text-base md:text-lg font-light leading-relaxed transition-all duration-500 ${isComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <p className="text-slate-400 text-base md:text-lg font-light leading-relaxed">
                         Crafting high-performance digital experiences with a focus on seamless mobile ecosystems and scalable modern architecture.
                     </p>
-                </div>
+                </motion.div>
 
-                <div className={`flex flex-col sm:flex-row gap-5 pt-4 transition-all duration-500 ${isComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <Link to="/contact" className="glass-primary h-14 rounded-full transition-all flex items-center justify-center gap-3 px-8 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] active:scale-[0.97]">
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-5 pt-4">
+                    <button
+                        onClick={() => scrollToSection('contact')}
+                        className="glass-primary h-14 rounded-full transition-all flex items-center justify-center gap-3 px-8 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] active:scale-[0.97] cursor-pointer"
+                    >
                         <span className="text-white font-bold text-xs uppercase tracking-[0.2em]">Start Your Project</span>
                         <span className="material-symbols-outlined text-primary text-xl">rocket_launch</span>
-                    </Link>
-                    <Link to="/projects" className="glass-secondary h-14 rounded-full transition-all flex items-center justify-center gap-3 px-8 hover:scale-[1.02] hover:bg-white/10 active:scale-[0.97]">
+                    </button>
+                    <button
+                        onClick={() => scrollToSection('projects')}
+                        className="glass-secondary h-14 rounded-full transition-all flex items-center justify-center gap-3 px-8 hover:scale-[1.02] hover:bg-white/10 active:scale-[0.97] cursor-pointer"
+                    >
                         <span className="text-white/90 font-medium text-xs uppercase tracking-[0.2em]">View My Work</span>
                         <span className="material-symbols-outlined text-secondary text-xl">arrow_forward</span>
-                    </Link>
-                </div>
+                    </button>
+                </motion.div>
             </div>
-        </main>
+        </motion.main>
     );
 }
 

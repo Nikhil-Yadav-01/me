@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
@@ -16,7 +17,6 @@ export default function ContactForm() {
         setStatus('sending');
 
         try {
-            // Using FormSubmit.co - a free form backend service
             const response = await fetch('https://formsubmit.co/ajax/nikhildevr.01@gmail.com', {
                 method: 'POST',
                 headers: {
@@ -49,10 +49,10 @@ export default function ContactForm() {
             <style>{`
                 .mesh-bg {
                     background-color: #050a0a;
-                    background-image: 
-                        radial-gradient(at 0% 0%, hsla(182,100%,10%,1) 0, transparent 50%), 
-                        radial-gradient(at 100% 0%, hsla(182,100%,5%,1) 0, transparent 50%), 
-                        radial-gradient(at 100% 100%, hsla(182,100%,10%,1) 0, transparent 50%), 
+                    background-image:
+                        radial-gradient(at 0% 0%, hsla(182,100%,10%,1) 0, transparent 50%),
+                        radial-gradient(at 100% 0%, hsla(182,100%,5%,1) 0, transparent 50%),
+                        radial-gradient(at 100% 100%, hsla(182,100%,10%,1) 0, transparent 50%),
                         radial-gradient(at 0% 100%, hsla(182,100%,5%,1) 0, transparent 50%);
                 }
                 .glass-panel {
@@ -62,7 +62,13 @@ export default function ContactForm() {
                 }
             `}</style>
 
-            <main className="relative z-10 w-full max-w-2xl mx-auto px-6">
+            <motion.main
+                className="relative z-10 w-full max-w-2xl mx-auto px-6"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border-primary/30 text-primary text-[10px] font-bold tracking-[0.2em] mb-8 uppercase">
                         <span className="material-symbols-outlined text-sm">mail</span>
@@ -77,7 +83,13 @@ export default function ContactForm() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                        className="grid md:grid-cols-2 gap-6"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, type: 'spring', stiffness: 100, damping: 20 }}
+                    >
                         <div>
                             <label className="block text-slate-400 text-sm font-medium mb-2">Name *</label>
                             <input
@@ -100,9 +112,15 @@ export default function ContactForm() {
                                 placeholder="your@email.com"
                             />
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                        className="grid md:grid-cols-2 gap-6"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, type: 'spring', stiffness: 100, damping: 20 }}
+                    >
                         <div>
                             <label className="block text-slate-400 text-sm font-medium mb-2">Phone</label>
                             <input
@@ -123,9 +141,14 @@ export default function ContactForm() {
                                 placeholder="Your company"
                             />
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3, type: 'spring', stiffness: 100, damping: 20 }}
+                    >
                         <label className="block text-slate-400 text-sm font-medium mb-2">Message *</label>
                         <textarea
                             required
@@ -135,12 +158,18 @@ export default function ContactForm() {
                             className="w-full px-4 py-3 rounded-xl glass-panel text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 transition-colors resize-none"
                             placeholder="Tell me about your project..."
                         />
-                    </div>
+                    </motion.div>
 
-                    <button
+                    <motion.button
                         type="submit"
                         disabled={status === 'sending'}
-                        className="w-full bg-primary text-black font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_30px_rgba(0,242,255,0.5)]"
+                        className="w-full bg-primary text-black font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4, type: 'spring', stiffness: 100, damping: 20 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.97 }}
                     >
                         {status === 'sending' ? (
                             <>
@@ -158,14 +187,30 @@ export default function ContactForm() {
                                 <span>Send Message</span>
                             </>
                         )}
-                    </button>
+                    </motion.button>
 
-                    {status === 'success' && (
-                        <p className="text-center text-primary text-sm">Thanks! I'll get back to you soon.</p>
-                    )}
-                    {status === 'error' && (
-                        <p className="text-center text-red-400 text-sm">Something went wrong. Please try again or email directly.</p>
-                    )}
+                    <AnimatePresence mode="wait">
+                        {status === 'success' && (
+                            <motion.p
+                                className="text-center text-primary text-sm"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                            >
+                                Thanks! I'll get back to you soon.
+                            </motion.p>
+                        )}
+                        {status === 'error' && (
+                            <motion.p
+                                className="text-center text-red-400 text-sm"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                            >
+                                Something went wrong. Please try again or email directly.
+                            </motion.p>
+                        )}
+                    </AnimatePresence>
                 </form>
 
                 <div className="mt-16 text-center">
@@ -174,21 +219,60 @@ export default function ContactForm() {
                         nikhildevr.01@gmail.com
                     </a>
                 </div>
-            </main>
+            </motion.main>
 
-            {/* Footer Section */}
-            <section className="relative z-10 w-full max-w-4xl mx-auto px-6">                
+            <motion.section
+                className="relative z-10 w-full max-w-4xl mx-auto px-6"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+            >
                 <footer className="mt-8 mb-8 w-full">
                     <div className="flex justify-center gap-5 mb-12">
-                        <a className="size-14 rounded-2xl glass-panel flex items-center justify-center text-primary transition-all hover:border-primary/50 group" href="https://github.com/Nikhil-Yadav-01" target="_blank" rel="noopener noreferrer">
-                            <span className="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">code</span>
-                        </a>
-                        <a className="size-14 rounded-2xl glass-panel flex items-center justify-center text-primary transition-all hover:border-primary/50 group" href="https://linkedin.com/in/nikhil-yadav-r01" target="_blank" rel="noopener noreferrer">
-                            <span className="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">share</span>
-                        </a>
-                        <a className="size-14 rounded-2xl glass-panel flex items-center justify-center text-primary transition-all hover:border-primary/50 group" href="tel:+919455366424">
-                            <span className="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">call</span>
-                        </a>
+                        <motion.a
+                            className="size-14 rounded-2xl glass-panel flex items-center justify-center text-primary"
+                            href="https://github.com/Nikhil-Yadav-01"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1, rotate: -5 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <motion.span
+                                className="material-symbols-outlined text-2xl"
+                                whileHover={{ scale: 1.2 }}
+                            >
+                                code
+                            </motion.span>
+                        </motion.a>
+                        <motion.a
+                            className="size-14 rounded-2xl glass-panel flex items-center justify-center text-primary"
+                            href="https://linkedin.com/in/nikhil-yadav-r01"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1, rotate: -5 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <motion.span
+                                className="material-symbols-outlined text-2xl"
+                                whileHover={{ scale: 1.2 }}
+                            >
+                                share
+                            </motion.span>
+                        </motion.a>
+                        <motion.a
+                            className="size-14 rounded-2xl glass-panel flex items-center justify-center text-primary"
+                            href="tel:+919455366424"
+                            whileHover={{ scale: 1.1, rotate: -5 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <motion.span
+                                className="material-symbols-outlined text-2xl"
+                                whileHover={{ scale: 1.2 }}
+                            >
+                                call
+                            </motion.span>
+                        </motion.a>
                     </div>
                     <div className="text-center space-y-3">
                         <div className="h-[1px] w-12 bg-primary/30 mx-auto mb-6"></div>
@@ -196,7 +280,7 @@ export default function ContactForm() {
                         <p className="text-slate-500 text-[10px] font-medium tracking-wider uppercase">Built for Scale • © 2026 Nikhil Yadav</p>
                     </div>
                 </footer>
-            </section>
+            </motion.section>
         </div>
     );
 }
